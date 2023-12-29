@@ -6,6 +6,12 @@ var SIGNUPBtn = document.getElementById('SIGNUPBtn');
 var signup = document.getElementById('SignUP')
 var login = document .getElementById('LogIN')
 var LOGOUTBtn = document.getElementById('LOGOUTBtn');
+var char8 = document.getElementById('char8');
+var uppercase = document.getElementById('uppercase');
+var lowercase = document.getElementById('lowercase');
+var digit = document.getElementById('digit');
+var special = document.getElementById('special');
+
 var CurUser 
 
 var users= [];
@@ -115,6 +121,13 @@ function SwitchToSingUP() {
       <label><i class="fa-solid fa-lock pe-2"></i>Password</label>
       <input type="password" placeholder="Enter your password" id="password" class="form-control my-4"
         oninput="checkPasswordUP()" />
+		<ul class="fa-ul">
+          <li class="" id="char8"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>At least 8 characters long</li>
+          <li class="" id="uppercase"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one uppercase letter</li>
+          <li class="" id="lowercase"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one lowercase letter</li>
+          <li class="" id="digit"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one digit</li>
+          <li class="" id="special"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one special character</li>
+        </ul>
       <button class="btn btn-primary form-control my-4" id="SIGNUPBtn" onclick="main()">
         SIGN UP
       </button>
@@ -131,6 +144,11 @@ function SwitchToSingUP() {
 	Password = document.getElementById('password');
 	SIGNUPBtn = document.getElementById('SIGNUPBtn');
 	signup = document.getElementById('SignUP');
+	char8 = document.getElementById('char8');
+	uppercase = document.getElementById('uppercase');
+	lowercase = document.getElementById('lowercase');
+	digit = document.getElementById('digit');
+	special = document.getElementById('special');
 	
 }
 
@@ -144,6 +162,13 @@ function SwitchToLogIN() {
         <input type="email" placeholder="Enter your email" id="email" class="form-control my-4" oninput="checkEmail()">
         <label><i class="fa-solid fa-lock pe-2"></i>Password</label>
         <input type="password" placeholder="Enter your password" id="password" class="form-control my-4" oninput="checkPassword()">
+		<ul class="fa-ul">
+          <li class="" id="char8"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>At least 8 characters long</li>
+          <li class="" id="uppercase"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one uppercase letter</li>
+          <li class="" id="lowercase"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one lowercase letter</li>
+          <li class="" id="digit"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one digit</li>
+          <li class="" id="special"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one special character</li>
+        </ul>
         <button class="btn btn-primary form-control my-4" id="LOGINBtn" onclick = "logIn()" >LOG IN</button>
         <p>Don’t have an account? <span id="SignUP" onclick="SwitchToSingUP()" style="cursor: pointer; text-decoration: underline;" >SIGNUP</span></p>
         <div class="text-center" id="alertIN"></div>
@@ -154,6 +179,11 @@ function SwitchToLogIN() {
 	Password = document.getElementById('password');
 	login = document .getElementById('LogIN');
 	LOGINBtn = document.getElementById('LOGINBtn');
+	char8 = document.getElementById('char8');
+	uppercase = document.getElementById('uppercase');
+	lowercase = document.getElementById('lowercase');
+	digit = document.getElementById('digit');
+	special = document.getElementById('special');
 }
 var regexName=/^[a-zA-Z1-9]{3,}$/;
 
@@ -209,11 +239,61 @@ function checkEmailUP(){
 
 }
 
-var regexPassword=/.{8,}/;
+var minLengthRegex = /.{8,}/;
+var uppercaseRegex = /[A-Z]/;
+var lowercaseRegex = /[a-z]/;
+var digitRegex = /\d/;
+var specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|\-=/]/;
 
 function checkPasswordUP(){
-	if(!regexPassword.test(Password.value)){
-		
+	var hasMinLength = minLengthRegex.test(Password.value);
+	if(hasMinLength){
+		char8.classList.add("text-success")
+		char8.classList.remove("text-danger")
+	}
+	else{
+		char8.classList.add("text-danger")
+		char8.classList.remove("text-success")
+	}
+  	var hasUppercase = uppercaseRegex.test(Password.value);
+	if(hasUppercase){
+		uppercase.classList.add("text-success")
+		uppercase.classList.remove("text-danger")
+	}
+	else{
+		uppercase.classList.add("text-danger")
+		uppercase.classList.remove("text-success")
+	}
+  	var hasLowercase = lowercaseRegex.test(Password.value);
+	if(hasLowercase){
+		lowercase.classList.add("text-success")
+		lowercase.classList.remove("text-danger")
+	}
+	else{
+		lowercase.classList.add("text-danger")
+		lowercase.classList.remove("text-success")
+	}
+  	var hasDigit = digitRegex.test(Password.value);
+	if(hasDigit){
+		digit.classList.add("text-success")
+		digit.classList.remove("text-danger")
+	}
+	else{
+		digit.classList.add("text-danger")
+		digit.classList.remove("text-success")
+	}
+  	var hasSpecialChar = specialCharRegex.test(Password.value);
+	if(hasSpecialChar){
+		special.classList.add("text-success")
+		special.classList.remove("text-danger")
+	}
+	else{
+		special.classList.add("text-danger")
+		special.classList.remove("text-success")
+	}
+	var isValid = hasMinLength && hasUppercase && hasLowercase && hasDigit && hasSpecialChar;
+
+	if(!isValid){
 		SIGNUPBtn.setAttribute("valid-password","NO");
 		Password.classList.add("is-invalid");
 	}else{
@@ -230,7 +310,54 @@ function checkPasswordUP(){
 
 }
 function checkPassword(){
-	if(!regexPassword.test(Password.value)){
+	var hasMinLength = minLengthRegex.test(Password.value);
+	if(hasMinLength){
+		char8.classList.add("text-success")
+		char8.classList.remove("text-danger")
+	}
+	else{
+		char8.classList.add("text-danger")
+		char8.classList.remove("text-success")
+	}
+  	var hasUppercase = uppercaseRegex.test(Password.value);
+	if(hasUppercase){
+		uppercase.classList.add("text-success")
+		uppercase.classList.remove("text-danger")
+	}
+	else{
+		uppercase.classList.add("text-danger")
+		uppercase.classList.remove("text-success")
+	}
+  	var hasLowercase = lowercaseRegex.test(Password.value);
+	if(hasLowercase){
+		lowercase.classList.add("text-success")
+		lowercase.classList.remove("text-danger")
+	}
+	else{
+		lowercase.classList.add("text-danger")
+		lowercase.classList.remove("text-success")
+	}
+  	var hasDigit = digitRegex.test(Password.value);
+	if(hasDigit){
+		digit.classList.add("text-success")
+		digit.classList.remove("text-danger")
+	}
+	else{
+		digit.classList.add("text-danger")
+		digit.classList.remove("text-success")
+	}
+  	var hasSpecialChar = specialCharRegex.test(Password.value);
+	if(hasSpecialChar){
+		special.classList.add("text-success")
+		special.classList.remove("text-danger")
+	}
+	else{
+		special.classList.add("text-danger")
+		special.classList.remove("text-success")
+	}
+
+	var isValid = hasMinLength && hasUppercase && hasLowercase && hasDigit && hasSpecialChar;
+	if(!isValid){
 		LOGINBtn.setAttribute("valid-password","NO");
 		
 		Password.classList.add("is-invalid");
