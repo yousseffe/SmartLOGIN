@@ -209,7 +209,7 @@ function checkEmailUP(){
 
 }
 
-var regexPassword=/^[a-zA-Z1-9]{8,}$/;
+var regexPassword=/.{8,}/;
 
 function checkPasswordUP(){
 	if(!regexPassword.test(Password.value)){
