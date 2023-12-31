@@ -245,7 +245,7 @@ function checkPasswordUP(){
 		char8.classList.add("text-danger")
 		char8.classList.remove("text-success")
 	}
-	if(Password.value=""){
+	if(Password.value==""){
 		char8.classList.remove("text-danger")
 	}
   	var hasUppercase = uppercaseRegex.test(Password.value);
@@ -257,7 +257,7 @@ function checkPasswordUP(){
 		uppercase.classList.add("text-danger")
 		uppercase.classList.remove("text-success")
 	}
-	if(Password.value=""){
+	if(Password.value==""){
 		uppercase.classList.remove("text-danger")
 	}
   	var hasLowercase = lowercaseRegex.test(Password.value);
@@ -269,7 +269,7 @@ function checkPasswordUP(){
 		lowercase.classList.add("text-danger")
 		lowercase.classList.remove("text-success")
 	}
-	if(Password.value=""){
+	if(Password.value==""){
 		lowercase.classList.remove("text-danger")
 	}
   	var hasDigit = digitRegex.test(Password.value);
@@ -281,7 +281,7 @@ function checkPasswordUP(){
 		digit.classList.add("text-danger")
 		digit.classList.remove("text-success")
 	}
-	if(Password.value=""){
+	if(Password.value==""){
 		digit.classList.remove("text-danger")
 	}
   	var hasSpecialChar = specialCharRegex.test(Password.value);
@@ -293,7 +293,7 @@ function checkPasswordUP(){
 		special.classList.add("text-danger")
 		special.classList.remove("text-success")
 	}
-	if(Password.value=""){
+	if(Password.value==""){
 		special.classList.remove("text-danger")
 	}
 	var isValid = hasMinLength && hasUppercase && hasLowercase && hasDigit && hasSpecialChar;
