@@ -109,35 +109,33 @@ function SwitchToHome(){
 }
 function SwitchToSingUP() {
 	document.getElementById('main').innerHTML=`
-	<div class="container vh-100">
-    <h1 class="p-5 text-center" >SMART LOGIN</h1>
-    <div class="row">
-      <div class=" m-auto py-5 px-5 shadow-lg login offset-lg-3 col-lg-6 col-md-8 col-sm-10 ">
-        <h3 class="mb-5 text-center">SIGNUP NOW</h3>
-        <label><i class="fa-solid fa-user"></i> Name</label>
-        <input type="text" placeholder="Enter your name" id="name" class="form-control my-4" oninput="checkName()" />
-        <label><i class="fa-solid fa-envelope pe-2"></i> Email</label>
-        <input type="email" placeholder="Enter your email" id="email" class="form-control my-4"
-          oninput="checkEmailUP()" />
-        <label><i class="fa-solid fa-lock pe-2"></i>Password</label>
-        <input type="password" placeholder="Enter your password" id="password" class="form-control my-4"
-          oninput="checkPasswordUP()" />
-      <ul class="fa-ul">
-            <li class="" id="char8"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>At least 8 characters long</li>
-            <li class="" id="uppercase"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one uppercase letter</li>
-            <li class="" id="lowercase"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one lowercase letter</li>
-            <li class="" id="digit"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one digit</li>
-            <li class="" id="special"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one special character</li>
-          </ul>
-        <button class="btn btn-primary form-control my-4" id="SIGNUPBtn" onclick="main()">
-          SIGN UP
-        </button>
-        <p>
-          Don’t have an account?
-          <span id="LogIN" onclick="SwitchToLogIN()" style="cursor: pointer; text-decoration: underline">LOGIN</span>
-        </p>
-        <div class="text-center" id="alert"></div>
-      </div>
+	<div class="container">
+    <h1 class="p-5 text-center" id="body">SMART LOGIN</h1>
+    <div class="w-50 m-auto py-5 px-5 shadow-lg login">
+      <h3 class="mb-5 text-center">SIGNUP NOW</h3>
+      <label><i class="fa-solid fa-user"></i> Name</label>
+      <input type="text" placeholder="Enter your name" id="name" class="form-control my-4" oninput="checkName()" />
+      <label><i class="fa-solid fa-envelope pe-2"></i> Email</label>
+      <input type="email" placeholder="Enter your email" id="email" class="form-control my-4"
+        oninput="checkEmailUP()" />
+      <label><i class="fa-solid fa-lock pe-2"></i>Password</label>
+      <input type="password" placeholder="Enter your password" id="password" class="form-control my-4"
+        oninput="checkPasswordUP()" />
+		<ul class="fa-ul">
+          <li class="" id="char8"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>At least 8 characters long</li>
+          <li class="" id="uppercase"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one uppercase letter</li>
+          <li class="" id="lowercase"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one lowercase letter</li>
+          <li class="" id="digit"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one digit</li>
+          <li class="" id="special"><span class="fa-li mt-1"><i class="fa-solid fa-check-square"></i></span>Contains at least one special character</li>
+        </ul>
+      <button class="btn btn-primary form-control my-4" id="SIGNUPBtn" onclick="main()">
+        SIGN UP
+      </button>
+      <p>
+        Don’t have an account?
+        <span id="LogIN" onclick="SwitchToLogIN()" style="cursor: pointer; text-decoration: underline">LOGIN</span>
+      </p>
+      <div class="text-center" id="alert"></div>
     </div>
   </div>
 	`;
@@ -247,6 +245,9 @@ function checkPasswordUP(){
 		char8.classList.add("text-danger")
 		char8.classList.remove("text-success")
 	}
+	if(Password.value=""){
+		char8.classList.remove("text-danger")
+	}
   	var hasUppercase = uppercaseRegex.test(Password.value);
 	if(hasUppercase){
 		uppercase.classList.add("text-success")
@@ -255,6 +256,9 @@ function checkPasswordUP(){
 	else{
 		uppercase.classList.add("text-danger")
 		uppercase.classList.remove("text-success")
+	}
+	if(Password.value=""){
+		uppercase.classList.remove("text-danger")
 	}
   	var hasLowercase = lowercaseRegex.test(Password.value);
 	if(hasLowercase){
@@ -265,6 +269,9 @@ function checkPasswordUP(){
 		lowercase.classList.add("text-danger")
 		lowercase.classList.remove("text-success")
 	}
+	if(Password.value=""){
+		lowercase.classList.remove("text-danger")
+	}
   	var hasDigit = digitRegex.test(Password.value);
 	if(hasDigit){
 		digit.classList.add("text-success")
@@ -274,6 +281,9 @@ function checkPasswordUP(){
 		digit.classList.add("text-danger")
 		digit.classList.remove("text-success")
 	}
+	if(Password.value=""){
+		digit.classList.remove("text-danger")
+	}
   	var hasSpecialChar = specialCharRegex.test(Password.value);
 	if(hasSpecialChar){
 		special.classList.add("text-success")
@@ -282,6 +292,9 @@ function checkPasswordUP(){
 	else{
 		special.classList.add("text-danger")
 		special.classList.remove("text-success")
+	}
+	if(Password.value=""){
+		special.classList.remove("text-danger")
 	}
 	var isValid = hasMinLength && hasUppercase && hasLowercase && hasDigit && hasSpecialChar;
 
@@ -375,7 +388,16 @@ function resetUP(){
 	Email.classList.remove("is-invalid");
 	Password.classList.remove("is-valid");
 	Password.classList.remove("is-invalid");
-
+	char8.classList.remove("text-danger")
+	char8.classList.remove("text-success")
+	uppercase.classList.remove("text-danger")
+	uppercase.classList.remove("text-success")
+	lowercase.classList.remove("text-danger")
+	lowercase.classList.remove("text-success")
+	digit.classList.remove("text-danger")
+	digit.classList.remove("text-success")
+	special.classList.remove("text-danger")
+	special.classList.remove("text-success")
 }
 
 function resetIN(){
