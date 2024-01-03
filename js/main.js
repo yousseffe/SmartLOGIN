@@ -112,7 +112,7 @@ function SwitchToSingUP() {
 	<div class="container">
     <h1 class="p-5 text-center" >SMART LOGIN</h1>
     <div class="row">
-      <div class=" m-auto py-5 px-5 shadow-lg login offset-lg-3 col-lg-6 col-md-8 col-sm-10">
+      <div class=" m-auto py-5 px-5 shadow-lg login offset-lg-3 col-lg-6 col-md-8 col-sm-12">
         <h3 class="mb-5 text-center">SIGNUP NOW</h3>
         <label><i class="fa-solid fa-user"></i> Name</label>
         <input type="text" placeholder="Enter your name" id="name" class="form-control my-4" oninput="checkName()" />
